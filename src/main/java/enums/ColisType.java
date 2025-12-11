@@ -1,6 +1,6 @@
 package enums;
 
-public enum Specialite {
+public enum ColisType {
 	STANDARD, FRAGILE, FRIGO
 
 }

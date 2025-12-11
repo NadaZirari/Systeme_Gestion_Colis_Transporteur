@@ -1,5 +1,10 @@
 package entity;
 
+import enums.ColisType;
+import enums.Role;
+import enums.StatutTransporteur;
+import lombok.Data;
+
 @Document(collection = "users")
 @Data
 public class User {
@@ -12,5 +17,5 @@ public class User {
     
     // Champs spécifiques au transporteur (null si ADMIN)
     private StatutTransporteur statut;
-    private Specialite specialite;
+    private ColisType specialite;
 }
