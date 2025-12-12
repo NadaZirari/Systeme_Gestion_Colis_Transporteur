@@ -1,10 +1,11 @@
-package entity;
+package com.example.demo.entity;
 
-import enums.ColisType;
-import enums.Role;
-import enums.StatutTransporteur;
+import com.example.demo.enums.ColisType;
+import com.example.demo.enums.Role;
+import com.example.demo.enums.StatutTransporteur;
 import lombok.Data;
-
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "users")
 @Data
 public class User {
