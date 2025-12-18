@@ -13,7 +13,7 @@ public class UserResponseDTO {
     private String id;
     private String login;
     private Role role;
-    private boolean active;
+    private boolean isActive;
     private StatutTransporteur statut;
     private ColisType specialite;
 }

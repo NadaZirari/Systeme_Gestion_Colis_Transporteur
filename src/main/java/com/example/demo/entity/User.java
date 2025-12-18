@@ -20,7 +20,7 @@ public class User {
     private String login;
     private String password;
     private Role role;
-    private Boolean active = true;
+    private Boolean isActive = true;
     
     // Champs spécifiques au transporteur (null si ADMIN)
     private StatutTransporteur statut;

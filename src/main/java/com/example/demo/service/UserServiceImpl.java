@@ -22,7 +22,7 @@ public class UserServiceImpl  implements UserService {
     @Override
     public User createTransporteur(User user) {
         user.setRole(Role.TRANSPORTEUR);
-        user.setActive(true);
+        user.setIsActive(true);
         user.setStatut(StatutTransporteur.DISPONIBLE);
         return userRepository.save(user);
     }
@@ -70,7 +70,7 @@ public class UserServiceImpl  implements UserService {
     public User activateUser(String id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found"));
-        user.setActive(true);
+        user.setIsActive(true);
         return userRepository.save(user);
     }
 
