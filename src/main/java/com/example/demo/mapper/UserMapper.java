@@ -22,7 +22,7 @@ public class UserMapper {
                 .id(user.getId())
                 .login(user.getLogin())
                 .role(user.getRole())
-                .isActive(user.getIsActive())
+                .isActive(user.isActive())
                 .statut(user.getStatut())
                 .specialite(user.getSpecialite())
                 .build();

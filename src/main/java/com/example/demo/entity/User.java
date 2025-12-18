@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
 @Document(collection = "users")
 @Data
 @NoArgsConstructor
@@ -20,9 +21,20 @@ public class User {
     private String login;
     private String password;
     private Role role;
-    private Boolean isActive = true;
+    @Builder.Default
+    private Boolean active = true;
     
     // Champs spécifiques au transporteur (null si ADMIN)
     private StatutTransporteur statut;
     private ColisType specialite;
+
+    // Explicit getter for active to ensure compatibility with Lombok and MapStruct
+    public Boolean isActive() {
+        return active;
+    }
+
+    // Explicit setter for active
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
 }
