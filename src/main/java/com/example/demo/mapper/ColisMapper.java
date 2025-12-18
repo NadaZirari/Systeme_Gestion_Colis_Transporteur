@@ -1,5 +1,7 @@
 package com.example.demo.mapper;
 
+import com.example.demo.dto.ColisCreateDTO;
+import com.example.demo.dto.ColisResponseDTO;
 import com.example.demo.entity.Colis;
 import org.springframework.stereotype.Component;
 

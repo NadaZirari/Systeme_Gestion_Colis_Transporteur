@@ -1,6 +1,8 @@
 package com.example.demo.mapper;
 
 
+import com.example.demo.dto.TransporteurCreateDTO;
+import com.example.demo.dto.UserResponseDTO;
 import com.example.demo.entity.User;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +22,7 @@ public class UserMapper {
                 .id(user.getId())
                 .login(user.getLogin())
                 .role(user.getRole())
-                .active(user.isActive())
+                .isActive(user.getIsActive())
                 .statut(user.getStatut())
                 .specialite(user.getSpecialite())
                 .build();

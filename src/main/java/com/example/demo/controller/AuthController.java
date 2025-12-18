@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.dto.LoginRequestDTO;
 import com.example.demo.dto.LoginResponseDTO;
 import com.example.demo.entity.User;
+import com.example.demo.security.JwtService;
 import com.example.demo.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
