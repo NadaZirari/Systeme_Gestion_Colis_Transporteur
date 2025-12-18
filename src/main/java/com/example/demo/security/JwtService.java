@@ -1,33 +1,40 @@
 package com.example.demo.security;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
 import com.example.demo.entity.User;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
-import static org.springframework.security.config.Elements.JWT;
-
 @Service
 public class JwtService {
 
-    private static final String SECRET = "SECRET_KEY_123456";
-    private static final String ISSUER = "LOGISTICS_API";
-    private static final long EXPIRATION = 1000 * 60 * 60; // 1h
+    @Value("${jwt.secret}")
+    private String secret;
+
+    @Value("${jwt.issuer}")
+    private String issuer;
+
+    @Value("${jwt.expiration-ms}")
+    private long expiration;
 
     public String generateToken(User user) {
         return JWT.create()
-                .withIssuer(ISSUER)
+                .withIssuer(issuer)
                 .withSubject(user.getLogin())
                 .withClaim("role", user.getRole().name())
-                .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION))
-                .sign(Algorithm.HMAC256(SECRET));
+                .withExpiresAt(new Date(System.currentTimeMillis() + expiration))
+                .sign(Algorithm.HMAC256(secret));
     }
 
     public String extractUsername(String token) {
-        return JWT.require(Algorithm.HMAC256(SECRET))
-                .withIssuer(ISSUER)
+        return JWT.require(Algorithm.HMAC256(secret))
+                .withIssuer(issuer)
                 .build()
                 .verify(token)
                 .getSubject();
     }
+
 }
