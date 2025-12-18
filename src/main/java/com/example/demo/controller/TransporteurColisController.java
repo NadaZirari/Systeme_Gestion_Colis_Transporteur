@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/transporteur/colis")
 @RequiredArgsConstructor
-@PreAuthorize("hasRole('TRANSPORTEUR')")
 public class TransporteurColisController {
 
     private final ColisService colisService;

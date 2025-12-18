@@ -32,13 +32,20 @@ public class SecurityConfig {
                         )
                 )
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**", "/swagger-ui/**",
-                                "/v3/api-docs/**").permitAll()
-                        .requestMatchers("/api/admin/**")
-                        .hasRole("ADMIN")
-                        .requestMatchers("/api/transporteur/**")
-                        .hasRole("TRANSPORTEUR")
-                        .anyRequest().authenticated()
+                        .requestMatchers(
+                            "/",
+                            "/index.html",
+                            "/api/auth/**", 
+                            "/swagger-ui/**",
+                            "/swagger-ui.html",
+                            "/v3/api-docs/**",
+                            "/webjars/**",
+                            "/swagger-resources/**",
+                            "/public/**"  // Allow public test endpoint
+                        ).permitAll()
+                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/api/transporteur/**").hasRole("TRANSPORTEUR")
+                        .anyRequest().authenticated()  // Require authentication for other endpoints
                 )
                 .addFilterBefore(
                         jwtFilter,

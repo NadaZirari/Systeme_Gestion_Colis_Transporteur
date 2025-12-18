@@ -28,6 +28,12 @@ public class JwtAuthenticationFilter
             FilterChain filterChain
     ) throws ServletException, IOException {
 
+        String path = request.getServletPath();
+        // Ignorer Swagger et les endpoints publics
+        if (path.startsWith("/swagger-ui") || path.startsWith("/v3/api-docs") || path.startsWith("/webjars") || path.startsWith("/swagger-resources")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
         String header = request.getHeader("Authorization");
 
         if (header == null || !header.startsWith("Bearer ")) {
