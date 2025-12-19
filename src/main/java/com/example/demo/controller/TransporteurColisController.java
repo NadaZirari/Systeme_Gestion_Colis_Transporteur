@@ -48,8 +48,8 @@ public class TransporteurColisController {
             }
             
             log.info("Récupération des colis pour le transporteur: {}", user.getLogin());
-            return colisService.getColisByTransporteur(user.getId(), pageable)
-                    .map(colisMapper::toResponse);
+            // Le service retourne déjà une Page<ColisResponseDTO>
+            return colisService.getColisByTransporteur(user.getId(), pageable);
                     
         } catch (Exception e) {
             log.error("Erreur lors de la récupération des colis", e);

@@ -4,6 +4,7 @@ import com.example.demo.entity.Colis;
 import com.example.demo.entity.User;
 import com.example.demo.enums.ColisType;
 import com.example.demo.enums.StatutColis;
+import com.example.demo.dto.ColisResponseDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,7 +32,7 @@ Page<Colis> getAllColis(
         Pageable pageable
 );
 
-Page<Colis> getColisByTransporteur(
+Page<ColisResponseDTO> getColisByTransporteur(
         String transporteurId,
         Pageable pageable
 );

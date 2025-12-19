@@ -7,6 +7,9 @@ import com.example.demo.enums.ColisType;
 import com.example.demo.enums.Role;
 import com.example.demo.enums.StatutColis;
 import com.example.demo.enums.StatutTransporteur;
+import com.example.demo.dto.ColisResponseDTO;
+import com.example.demo.exception.UnauthorizedAccessException;
+import com.example.demo.mapper.ColisMapper;
 import com.example.demo.repository.ColisRepository;
 import com.example.demo.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +23,7 @@ public class ColisServiceImpl implements ColisService {
 
     private final ColisRepository colisRepository;
     private final UserRepository userRepository;
+    private final ColisMapper colisMapper;
 
     @Override
     public Colis createColis(Colis colis) {
@@ -77,11 +81,11 @@ public class ColisServiceImpl implements ColisService {
             User connectedUser
     ) {
         Colis colis = colisRepository.findById(colisId)
-                .orElseThrow(() -> new RuntimeException("Colis not found"));
+                .orElseThrow(() -> new IllegalArgumentException("Colis not found"));
 
         if (connectedUser.getRole() == Role.TRANSPORTEUR &&
                 !connectedUser.getId().equals(colis.getTransporteurId())) {
-            throw new RuntimeException("Access denied");
+            throw new UnauthorizedAccessException("Access denied");
         }
 
         colis.setStatut(statut);
@@ -104,14 +108,12 @@ public class ColisServiceImpl implements ColisService {
     }
 
     @Override
-    public Page<Colis> getColisByTransporteur(
+    public Page<ColisResponseDTO> getColisByTransporteur(
             String transporteurId,
             Pageable pageable
     ) {
-        return colisRepository.findByTransporteurId(
-                transporteurId,
-                pageable
-        );
+        return colisRepository.findByTransporteurId(transporteurId, pageable)
+            .map(colisMapper::toResponse);
     }
 
     @Override

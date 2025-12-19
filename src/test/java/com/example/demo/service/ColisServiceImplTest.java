@@ -1,11 +1,11 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.ColisResponseDTO;
-import com.example.demo.dto.UpdateStatutColisDTO;
 import com.example.demo.entity.Colis;
 import com.example.demo.entity.User;
 import com.example.demo.enums.Role;
 import com.example.demo.enums.StatutColis;
+import com.example.demo.enums.ColisType;
 import com.example.demo.exception.UnauthorizedAccessException;
 import com.example.demo.mapper.ColisMapper;
 import com.example.demo.repository.ColisRepository;
@@ -49,6 +49,7 @@ class ColisServiceImplTest {
     private User transporteur;
     private User admin;
     private ColisResponseDTO colisResponseDTO;
+    private Pageable pageable;
 
     @BeforeEach
     void setUp() {
@@ -71,18 +72,28 @@ class ColisServiceImplTest {
         colis.setId("colis1");
         colis.setTransporteurId("transporteur1");
         colis.setStatut(StatutColis.EN_ATTENTE);
+        colis.setType(ColisType.STANDARD);
+        colis.setPoids(1.5);
 
-        // Création d'un DTO de réponse
-        colisResponseDTO = new ColisResponseDTO();
-        colisResponseDTO.setId("colis1");
-        colisResponseDTO.setStatut(StatutColis.EN_ATTENTE);
+        colisResponseDTO = ColisResponseDTO.builder()
+            .id("colis1")
+            .type(ColisType.STANDARD)
+            .poids(10.5)
+            .adresseDestination("123 Rue Test")
+            .statut(StatutColis.EN_ATTENTE)
+            .transporteurId("transporteur1")
+            .instructionsManutention("Fragile")
+            .temperatureMin(20.0)
+            .temperatureMax(25.0)
+            .build();
+
+        pageable = PageRequest.of(0, 10);
     }
 
     @Test
     void getColisByTransporteur_ShouldReturnColisList() {
         // Arrange
-        Pageable pageable = PageRequest.of(0, 10);
-        List<Colis> colisList = Arrays.asList(colis);
+        List<Colis> colisList = List.of(colis);
         Page<Colis> colisPage = new PageImpl<>(colisList, pageable, colisList.size());
 
         when(colisRepository.findByTransporteurId(anyString(), any(Pageable.class))).thenReturn(colisPage);
@@ -96,6 +107,7 @@ class ColisServiceImplTest {
         assertEquals(1, result.getContent().size());
         assertEquals("colis1", result.getContent().get(0).getId());
         verify(colisRepository, times(1)).findByTransporteurId(anyString(), any(Pageable.class));
+        verify(colisMapper, times(1)).toResponse(any(Colis.class));
     }
 
     @Test
@@ -103,7 +115,6 @@ class ColisServiceImplTest {
         // Arrange
         when(colisRepository.findById(anyString())).thenReturn(Optional.of(colis));
         when(colisRepository.save(any(Colis.class))).thenReturn(colis);
-        when(colisMapper.toResponse(any(Colis.class))).thenReturn(colisResponseDTO);
 
         // Act
         Colis result = colisService.updateStatutColis("colis1", StatutColis.EN_TRANSIT, transporteur);
@@ -149,7 +160,6 @@ class ColisServiceImplTest {
         // Arrange
         when(colisRepository.findById(anyString())).thenReturn(Optional.of(colis));
         when(colisRepository.save(any(Colis.class))).thenReturn(colis);
-        when(colisMapper.toResponse(any(Colis.class))).thenReturn(colisResponseDTO);
 
         // Act
         Colis result = colisService.updateStatutColis("colis1", StatutColis.LIVRE, admin);
