@@ -49,8 +49,10 @@ Admin	admin	admin123
 Transporteur Standard	transporteur_standard	password
 Transporteur Fragile	transporteur_fragile	password
 Transporteur Frigo	transporteur_frigo	password
+
 📚 Documentation API
 Authentification
+
 # Se connecter
 POST /api/auth/login
 Content-Type: application/json
@@ -61,6 +63,7 @@ Content-Type: application/json
 }
 Endpoints Principaux
 Admin
+
 GET /api/admin/colis - Lister tous les colis
 POST /api/admin/colis - Créer un colis
 PUT /api/admin/colis/{id} - Modifier un colis
@@ -68,6 +71,7 @@ DELETE /api/admin/colis/{id} - Supprimer un colis
 POST /api/admin/colis/{id}/assign - Assigner un colis
 GET /api/admin/transporteurs - Lister les transporteurs
 Transporteur
+
 GET /api/transporteur/colis - Lister mes colis
 PUT /api/transporteur/colis/{id}/status - Mettre à jour statut
 # 📊 Modèles de Données

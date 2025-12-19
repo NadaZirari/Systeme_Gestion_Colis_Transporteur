@@ -35,17 +35,23 @@ public class SecurityConfig {
                         .requestMatchers(
                             "/",
                             "/index.html",
-                            "/api/auth/**", 
+                            "/api/auth/**",
+                            // Swagger UI v3
+                            "/v3/api-docs/**",
                             "/swagger-ui/**",
                             "/swagger-ui.html",
-                            "/v3/api-docs/**",
+                            // Actuator
+                            "/actuator/health",
+                            "/actuator/health/**",
+                            // Webjars
                             "/webjars/**",
-                            "/swagger-resources/**",
-                            "/public/**"  // Allow public test endpoint
+                            "/favicon.ico",
+                            // Error page
+                            "/error"
                         ).permitAll()
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
                         .requestMatchers("/api/transporteur/**").hasRole("TRANSPORTEUR")
-                        .anyRequest().authenticated()  // Require authentication for other endpoints
+                        .anyRequest().authenticated()
                 )
                 .addFilterBefore(
                         jwtFilter,
