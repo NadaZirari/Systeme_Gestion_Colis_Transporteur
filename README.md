@@ -39,8 +39,8 @@ cd gestion-colis
 Démarrer avec Docker Compose
 docker-compose up -d
 Accéder aux services
-API: http://localhost:8080
-Swagger UI: http://localhost:8080/swagger-ui.html
+API: http://localhost:8082
+Swagger UI: http://localhost:8082/swagger-ui.html
 MongoDB Express: http://localhost:8081 (profil dev)
 N8n: http://localhost:5678
 Utilisateurs par Défaut

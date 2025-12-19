@@ -18,7 +18,7 @@ services:
     container_name: gestion-colis-app
     restart: always
     ports:
-      - "8080:8080"
+      - "8082:8082"
     environment:
       SPRING_DATA_MONGODB_URI: mongodb://admin:admin123@mongodb:27017/gestioncolis?authSource=admin
       JWT_SECRET: mysecret123
