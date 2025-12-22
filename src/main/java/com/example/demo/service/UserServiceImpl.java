@@ -22,7 +22,7 @@ public class UserServiceImpl  implements UserService {
     @Override
     public User createTransporteur(User user) {
         user.setRole(Role.TRANSPORTEUR);
-        user.setActive(true);
+        user.setActive(false);
         user.setStatut(StatutTransporteur.DISPONIBLE);
         return userRepository.save(user);
     }
