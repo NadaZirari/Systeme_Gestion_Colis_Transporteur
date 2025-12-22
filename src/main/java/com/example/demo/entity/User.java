@@ -22,7 +22,7 @@ public class User {
     private String password;
     private Role role;
     @Builder.Default
-    private Boolean active = true;
+    private Boolean active = false;
     
     // Champs spécifiques au transporteur (null si ADMIN)
     private StatutTransporteur statut;

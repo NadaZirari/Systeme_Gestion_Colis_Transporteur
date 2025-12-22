@@ -70,7 +70,7 @@ public class UserServiceImpl  implements UserService {
     public User activateUser(String id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found"));
-        user.setActive(false);
+        user.setActive(true);
         return userRepository.save(user);
     }
 
