@@ -103,6 +103,9 @@ FRIGO: + temperature_min, temperature_max
 Colis: EN_ATTENTE, EN_TRANSIT, LIVRE, ANNULE
 Transporteur: DISPONIBLE, EN_LIVRAISON
 
+
+![]("C:\Users\adm\Pictures\Screenshots\diag class brief security.png")
+
 # 🧪 Tests
 
 Exécuter les tests unitaires
