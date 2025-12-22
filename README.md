@@ -104,7 +104,10 @@ Colis: EN_ATTENTE, EN_TRANSIT, LIVRE, ANNULE
 Transporteur: DISPONIBLE, EN_LIVRAISON
 
 
-![]("C:\Users\adm\Pictures\Screenshots\diag class brief security.png")
+# Diagramm de class
+
+<img width="320" height="345" alt="diag class brief security" src="https://github.com/user-attachments/assets/547d9753-d7f9-41ce-840c-c6b87e3b9083" />
+
 
 # 🧪 Tests
 
