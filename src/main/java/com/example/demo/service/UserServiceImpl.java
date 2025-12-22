@@ -73,6 +73,13 @@ public class UserServiceImpl  implements UserService {
         user.setActive(true);
         return userRepository.save(user);
     }
+    @Override
+    public User desactivateUser(String id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        user.setActive(false);
+        return userRepository.save(user);
+    }
 
     @Override
     public Optional<User> findByLogin(String login) {

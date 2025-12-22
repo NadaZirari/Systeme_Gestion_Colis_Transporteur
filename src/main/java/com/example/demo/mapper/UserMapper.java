@@ -14,6 +14,7 @@ public class UserMapper {
                 .login(dto.getLogin())
                 .password(dto.getPassword())
                 .specialite(dto.getSpecialite())
+                  
                 .build();
     }
 

@@ -75,6 +75,11 @@ public class AdminUserController {
         return userMapper.toResponse(userService.activateUser(id));
     }
 
+    @PutMapping("/users/{id}/desactivate")
+    public UserResponseDTO desactivateUser(@PathVariable String id) {
+        return userMapper.toResponse(userService.desactivateUser(id));
+    }
+
     @DeleteMapping("/transporteurs/{id}")
     public void deleteTransporteur(@PathVariable String id) {
         userService.deleteTransporteur(id);

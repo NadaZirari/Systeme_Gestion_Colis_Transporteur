@@ -24,6 +24,7 @@ Page<User> getTransporteursBySpecialite(
 );
 
 User activateUser(String id);
+User desactivateUser(String id);
 
 Optional<User> findByLogin(String login);
 }
