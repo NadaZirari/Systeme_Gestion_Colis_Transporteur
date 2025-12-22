@@ -58,7 +58,7 @@ class ColisServiceImplTest {
         transporteur.setId("transporteur1");
         transporteur.setLogin("transporteur1");
         transporteur.setRole(Role.TRANSPORTEUR);
-        transporteur.setActive(true);
+        transporteur.setActive(false);
 
         // Création d'un admin
         admin = new User();
